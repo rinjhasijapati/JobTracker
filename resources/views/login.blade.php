@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        .signup-card {
+        .login-card {
             max-width: 400px;
             margin: auto;
         }
@@ -18,16 +19,16 @@
 
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card signup-card">
-                    @if(Session::has('success'))
-                    <div class="alert alert-success" role="alert">
-                        {{ Session::get('success') }}
+            <div class="col-md-8">
+                <div class="card login-card">
+                    @if(Session::has('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ Session::get('error') }}
                     </div>
                     @endif
                     <div class="card-body">
-                        <h2 class="text-center mb-4">Sign Up</h2>
-                        <form action="{{ route('signup') }}" method="POST">
+                        <h2 class="text-center mb-4">Login</h2>
+                        <form action="{ route('login') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>
@@ -37,9 +38,13 @@
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" id="password" name="password" class="form-control" required>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block w-100 mx-auto">Sign Up</button>
+                            <button type="submit" class="btn btn-primary btn-block w-100 mx-auto">Login</button>
                         </form>
-                        <a href="#" class="d-block text-center mt-3">Already have an account?</a>
+                        <hr>
+                        <div class="text-center mt-3">
+                            <a href="#" class="btn btn-danger"><i class="fab fa-google"></i> Login with Google</a>
+                        </div>
+                        <a href="#" class="d-block text-center mt-3">Don't have an account?</a>
                     </div>
                 </div>
             </div>
