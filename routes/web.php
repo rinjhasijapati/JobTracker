@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\OauthProviderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/auth/{provider}/redirect', [OauthProviderController::class,'redirect']);
+ 
+Route::get('/auth/{provider}/callback', [OauthProviderController::class,'callback']);
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,5 +34,19 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+ 
+// Route::get('/auth/google/redirect', function () {
+//     return Socialite::driver('google')->redirect();
+// });
+ 
+// Route::get('/auth/google/callback', function () {
+//     $user = Socialite::driver('google')->user();
+//     dd($user);
+ 
+//     // $user->token
+// });
+
 
 require __DIR__.'/auth.php';
