@@ -38,15 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
         return view('showstatus', ['status' => $type]);
     })->name('status');
     
-    // Route::get('/applicationsent', function () {
-    //     return view('applicationSent');
-    // })->name('applicationsent');
-
-
-    
-    // Route::get('/interviewset', function () {
-    //     return view('leads');
-    // })->name('leads');
+  
 });
 
 
