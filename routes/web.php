@@ -41,8 +41,10 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('lead/create',function(){
         return view('createlead');
 
-    })->name('createnewlead');
+    })->name('displaycreatenewleadform');
 
+  
+   
 });
 
 
@@ -54,3 +56,4 @@ Route::middleware('auth')->group(function () {
 
 
 require __DIR__.'/auth.php';
+require __DIR__.'/lead.php';
