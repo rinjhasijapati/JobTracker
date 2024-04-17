@@ -37,16 +37,12 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('status/{type}', function ($type) {
         return view('showstatus', ['status' => $type]);
     })->name('status');
-    
-    // Route::get('/applicationsent', function () {
-    //     return view('applicationSent');
-    // })->name('applicationsent');
 
+    Route::get('lead/create',function(){
+        return view('createlead');
 
-    
-    // Route::get('/interviewset', function () {
-    //     return view('leads');
-    // })->name('leads');
+    })->name('createnewlead');
+
 });
 
 

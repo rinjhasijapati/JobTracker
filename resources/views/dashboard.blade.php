@@ -1,9 +1,9 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-lg text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+   <x-slot name="header">
+      <h2 class="font-semibold text-lg text-gray-800 leading-tight">
+         {{ __('Dashboard') }}
+      </h2>
+   </x-slot>
 
    <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -15,7 +15,10 @@
                   <div class="lanes">
                      <div class="swim-lane" id="todo-lane">
                         <h3 class="heading">ToDo</h3>
-
+                        <form id="todo-form">
+                           <input type="text" placeholder="Add a task..." id="todo-input" />
+                           <button type="submit">Add +</button>
+                        </form>
                         <div class="task" draggable="true">
 
                            <h4 class="todo-head">fsdfsdf1</h4>
@@ -32,10 +35,6 @@
                            <p>fsdfsd</p>
                         </div>
 
-                        <form id="todo-form">
-                           <input type="text" placeholder="Add a task..." id="todo-input" />
-                           <button type="submit">Add +</button>
-                        </form>
                      </div>
 
                      <div class="swim-lane">
