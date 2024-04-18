@@ -4,11 +4,12 @@
          <h2 class="font-semibold text-lg text-gray-800 leading-tight">
             {{ __('Dashboard') }}
          </h2>
+       
          <a href="{{route('displaycreatenewleadform')}}">
-            <button class="cursor-pointer font-semibold overflow-hidden relative z-100 border border-green-500 group px-8 py-1">
-               <span class="relative z-10 text-green-500 group-hover:text-white text-xl duration-500">Create a new Lead</span>
-               <span class="absolute w-full h-full bg-green-500 -left-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:left-0 duration-500"></span>
-               <span class="absolute w-full h-full bg-green-500 -right-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:right-0 duration-500"></span>
+            <button class="cursor-pointer font-semibold overflow-hidden relative z-100 border border-green-500 group px-4 py-1 rounded-md">
+               <span class="relative z-10 text-green-500 group-hover:text-white text-base duration-500">Create a new Lead</span>
+               <span class="absolute w-full h-full bg-green-500 -left-24 top-0 -rotate-45 group-hover:rotate-0 group-hover:left-0 duration-500"></span>
+               <span class="absolute w-full h-full bg-green-500 -right-24 top-0 -rotate-45 group-hover:rotate-0 group-hover:right-0 duration-500"></span>
              </button>
          </a>
        
@@ -107,7 +108,11 @@
                      </div>
 
                   </div>
+
+              
                </div>
+
+             
       @vite(['resources/js/drag.js' ,'resources/css/dashboard.css'])
    </div>
 </x-app-layout>
