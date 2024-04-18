@@ -22,35 +22,16 @@
                   <div class="lanes">
                      <div>
                         <div class="swim-lane" id="todo-lane">
-                           <h3 class="heading">leads</h3>
-   
-                           <div class="task" draggable="true">
-   
-                              <h4 class="todo-head">American heritage girls</h4>
-                              <p>Application Developer</p>
-                           </div>
-                           <div class="task" draggable="true">
-   
-                              <h4 class="todo-head">Chill piper</h4>
-                              <p>Fornt end engineer</p>
-                           </div>
-                           <div class="task" draggable="true">
-   
-                              <h4 class="todo-head">pied piper</h4>
-                              <p>intern</p>
-                           </div>
-                           <div class="task" draggable="true">
-   
-                              <h4 class="todo-head">pied piper</h4>
-                              <p>intern</p>
-                           </div>
-                           <div class="task" draggable="true">
-   
-                              <h4 class="todo-head">pied piper</h4>
-                              <p>intern</p>
-                           </div>
-   
-                           
+
+                           <h3 class="heading">lead</h3>
+                           @foreach ($leads as $lead)
+                           <a href="{{route('lead.showdetails',['id' => $lead->id])}}" data-id="{{$lead->id}}" class="task" draggable="true">
+                              <div >
+                                 <h4 class="todo-head">{{$lead->company_name}}</h4>
+                                 <p>{{$lead->job_title}}</p>
+                              </div>
+                           </a>
+                        @endforeach
                         </div>
                         <div id="todo-form" class="flex justify-center bg-green-300 mt-4 rounded-md shadow-2xl" >
                            <button id="show-form-btn">Quick Add</button>
@@ -64,7 +45,6 @@
                                </div>
 
                               </div>
-                               
                            </form>
                        </div>
                      </div>
@@ -73,60 +53,56 @@
                      <div class="swim-lane">
                         <h3 class="heading">Application sent</h3>
 
-                        <div class="task" draggable="true">
-
-                           <h4 class="todo-head">NomadList</h4>
-                           <p>Data entry</p>
-                        </div>
+                        @foreach ($applicationsSent as $applicationSent)
+                        <a href="{{route('lead.showdetails',['id' => $applicationSent->id])}}" data-id="{{$applicationSent->id}}" class="task" draggable="true">
+                           <div >
+                              <h4 class="todo-head">{{$applicationSent->company_name}}</h4>
+                              <p>{{$applicationSent->job_title}}</p>
+                           </div>
+                        </a>
+                     @endforeach
                        
                      </div>
 
                      <div class="swim-lane">
                         <h3 class="heading">Interview set</h3>
-
-                        <div class="task" draggable="true">
-
-                           <h4 class="todo-head">Veeva system</h4>
-                           <p>Full stack web Developer</p>
-                        </div>
-                        <div class="task" draggable="true">
-
-                           <h4 class="todo-head">Ghost</h4>
-                           <p>Front end Developer</p>
-                        </div>
+                        @foreach ($interviewsSet as $interviewSet)
+                        <a href="{{route('lead.showdetails',['id' => $interviewSet->id])}}" data-id="{{$interviewSet->id}}" class="task" draggable="true">
+                           <div >
+                              <h4 class="todo-head">{{$interviewSet->company_name}}</h4>
+                              <p>{{$interviewSet->job_title}}</p>
+                           </div>
+                        </a>
+                     @endforeach
                         
                      </div>
 
                      <div class="swim-lane">
-                        <h3 class="heading">Interview set</h3>
+                        <h3 class="heading">Offer Received</h3>
 
-                        <div class="task" draggable="true">
-
-                           <h4 class="todo-head">Veeva system</h4>
-                           <p>Full stack web Developer</p>
-                        </div>
-                        <div class="task" draggable="true">
-
-                           <h4 class="todo-head">Ghost</h4>
-                           <p>Front end Developer</p>
-                        </div>
+                        @foreach ($offersReceived as $offerReceived)
+                        <a href="{{route('lead.showdetails',['id' => $offerReceived->id])}}" data-id="{{$offerReceived->id}}" class="task" draggable="true">
+                           <div >
+                              <h4 class="todo-head">{{$offerReceived->company_name}}</h4>
+                              <p>{{$offerReceived->job_title}}</p>
+                           </div>
+                        </a>
+                     @endforeach
                         
                      </div>
 
 
                      <div class="swim-lane">
-                        <h3 class="heading">Interview set</h3>
+                        <h3 class="heading">Closed</h3>
 
-                        <div class="task" draggable="true">
-
-                           <h4 class="todo-head">Veeva system</h4>
-                           <p>Full stack web Developer</p>
-                        </div>
-                        <div class="task" draggable="true">
-
-                           <h4 class="todo-head">Ghost</h4>
-                           <p>Front end Developer</p>
-                        </div>
+                        @foreach ($closedleads as $closedlead)
+                        <a href="{{route('lead.showdetails',['id' => $closedlead->id])}}" data-id="{{$closedlead->id}}" class="task" draggable="true">
+                           <div >
+                              <h4 class="todo-head">{{$closedlead->company_name}}</h4>
+                              <p>{{$closedlead->job_title}}</p>
+                           </div>
+                        </a>
+                     @endforeach
                         
                      </div>
 
