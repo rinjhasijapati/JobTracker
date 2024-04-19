@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\OauthProviderController;
+use App\Http\Controllers\Leads\LeadController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
@@ -28,10 +29,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function(){
-    Route::get('/dashboard',function(){
-        return view('dashboard');
-
-    })->name('dashboard');
+    Route::get('/dashboard',[LeadController::class,'index'])->name('dashboard');
 
 
     Route::get('status/{type}', function ($type) {
@@ -41,8 +39,10 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('lead/create',function(){
         return view('createlead');
 
-    })->name('createnewlead');
+    })->name('displaycreatenewleadform');
 
+  
+   
 });
 
 
@@ -54,3 +54,4 @@ Route::middleware('auth')->group(function () {
 
 
 require __DIR__.'/auth.php';
+require __DIR__.'/lead.php';
