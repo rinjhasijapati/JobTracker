@@ -65,6 +65,26 @@ class LeadController extends Controller
 
     }
     
+    public function quickAddLead(Request $req){
+     
+        $req->validate([
+            'jobtitle' => 'required|string|max:255',
+            'companyname' => 'required|string|max:255',
+        ]);
+  
+
+
+    // If validation passes,
+            // $lead = new Jobs();
+            // $lead->job_title = $req->jobtitle;
+            // $lead->company_name = $req->companyname;
+            // $lead->status = "lead";
+            // $lead->save();
+        return response('this is from quck add');
+            // return redirect(route('dashboard'));
+    }
+
+
     public function addNewLead(Request $req){
        
         $jobtitle =  $req->jobtitle;

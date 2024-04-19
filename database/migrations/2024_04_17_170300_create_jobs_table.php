@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
             $table->string('job_title');
             $table->string('listing_url')->nullable();
             $table->string('job_location')->nullable();
@@ -25,6 +25,11 @@ return new class extends Migration
             $table->text('company_summary')->nullable();
             $table->string('status');
             $table->dateTime('interview_date')->nullable();
+
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }

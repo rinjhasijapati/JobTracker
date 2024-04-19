@@ -36,11 +36,21 @@
                         </div>
                         <div id="todo-form" class="flex justify-center bg-green-300 mt-4 rounded-md shadow-2xl" >
                            <button id="show-form-btn">Quick Add</button>
-                           <form id="add-form" style="display: none;">
+                           <form action="{{route('quicknewlead.add')}}" method="post" id="add-form" style="display: none;">
+                             @csrf()
                               <div class="flex flex-col items-center">
-                                 <input type="text" placeholder="Add a company name..." id="company-name-input" class="rounded-md p-3 outline-none "/>
-                                  <input type="text" placeholder="Add a job" id="job-input"  class="rounded-md p-3 outline-none "/>
-                               <div class="p-3">
+                                 <input name="companyname" value="{{ old('companyname') }}" type="text" placeholder="Add a company name..." id="company-name-input" class="rounded-md p-3 outline-none " />
+                                 <x-input-error :messages="$errors->get('companyname')" class="mt-2" />
+                                  <input name="jobtitle" value="{{ old('jobtitle') }}" type="text" placeholder="Add a job" id="job-input"  class="rounded-md p-3 outline-none " />
+                                 @error('jobtitle')
+                                       <script>
+                                          window.onload = function() {
+                                             alert("{{$message}}");
+                                          }
+                                    </script>
+                                 @enderror
+                                    
+                                  <div class="p-3">
                                  <button type="submit" >Add</button>
                                  <button type="button" id="hide-form-button">Cancel</button>
                                </div>
