@@ -11,7 +11,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
     // routes/web.php
     Route::patch('/update-task-status/{taskId}', [LeadController::class,'updateLeadStatus'])->name('lead.updateStatus');
-
+    
 
 });
 

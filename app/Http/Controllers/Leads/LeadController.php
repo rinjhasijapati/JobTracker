@@ -44,7 +44,8 @@ class LeadController extends Controller
     }
     
     public function displayLeadDetails(){
-        return response('this is show details form');
+        //retun view here
+        return view('showleaddetails');
     }
     
     public function updateLeadStatus(Request $req , $taskId){
