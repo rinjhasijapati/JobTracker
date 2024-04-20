@@ -1,9 +1,11 @@
 <?php
 
-use App\Models\User;
+use App\Http\Controllers\Auth\OauthProviderController;
+use App\Http\Controllers\Leads\LeadController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
+use PhpParser\Node\Expr\FuncCall;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -17,66 +19,39 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
+Route::get('/auth/{provider}/redirect', [OauthProviderController::class,'redirect']);
+ 
+Route::get('/auth/{provider}/callback', [OauthProviderController::class,'callback']);
+
+
 Route::get('/', function () {
-    return view('dashboard');
-})->middleware('auth')->name('dashboard');
-
-Route::get('/register', function () {
-    return view('register');
+    return view('welcome');
 });
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
 
-Route::get('/confirm/logout', function () {
-    if(Auth::check()){
-        return "<script>if(confirm('Are you sure you want to exit?')) { window.location.href = '/logout'; } else { window.location.href = '/';}</script>";
-    }else{
-        return view('login');
-    }
-})->name('confirm-logout');
+Route::middleware(['auth', 'verified'])->group(function(){
+    Route::get('/dashboard',[LeadController::class,'index'])->name('dashboard');
 
 
-Route::get('/logout', function () {
-    // if(Auth::check()){
-    //     return redirect(route('confirm-logout'));
-    // }else{
-    //     return view('login');
-    // }
-    Auth::logout();
-    return view('login');
-})->name('logout');
+    Route::get('status/{type}', function ($type) {
+        return view('showstatus', ['status' => $type]);
+    })->name('status');
 
-Route::post('/register-user', function (Request $req) {
+    Route::get('lead/create',function(){
+        return view('createlead');
 
-    $req->validate([
-        'email' => 'required',
-        'name' => 'required',
-        'password' => 'required',
-    ]);
-    $parsedData = [
-        'email' => $req->email,
-        'password' => bcrypt($req->password),
-        'name' => $req->name,
-    ];
-    User::create($parsedData);
-    return redirect(route('login'));
-})->name('register-user');
+    })->name('displaycreatenewleadform');
 
-
-Route::post('/signin', function (Request $req) {
-    $req->validate([
-        'email' => ['required', 'email'],
-        'password' => 'required',
-    ]);
-
-    if (Auth::attempt(['email' => $req->email, 'password' => $req->password])) {
-        // password is correct
-        return redirect(route('dashboard'));
-    } else {
-       
-        return response(route('login'));
-
-    }
-
+  
+   
 });
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+require __DIR__.'/auth.php';
+require __DIR__.'/lead.php';
