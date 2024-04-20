@@ -62,9 +62,12 @@
                             </select>
                         </div>
                     </form>
-                    <button class="font-mono bg-blue-100 text-blue-600 rounded-lg w-24 h-11 transition duration-300 hover:bg-blue-600 hover:shadow-outline hover:text-white">
-                        Edit
-                      </button>
+                    <a href="{{route('lead.showeditdetailsform',['id'=>$lead->id])}}">
+                        <button class="font-mono bg-blue-100 text-blue-600 rounded-lg w-24 h-11 transition duration-300 hover:bg-blue-600 hover:shadow-outline hover:text-white">
+                            Edit
+                          </button>
+                    </a>
+                   
                 </div>
                 
 

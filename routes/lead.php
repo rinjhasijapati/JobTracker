@@ -11,6 +11,10 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::post('/quick/newlead',[LeadController::class,'quickAddLead'])->name('quicknewlead.add');
     Route::get('/showlead/{id}',[LeadDetailsController::class,'getLeadDetails'])->name('lead.showdetails');
 
+    Route::get('/edit/{id}',[LeadDetailsController::class,'showEditLeadDetailsForm'])->name('lead.showeditdetailsform');
+    Route::post('/updatelead/{id}',[LeadDetailsController::class,'updateLeadDetails'])->name('lead.updateleaddetails');
+
+
     // Route::post('/quick/newlead',[LeadController::class,'quickAddLead'])->name('quicknewlead.add');
 
 
