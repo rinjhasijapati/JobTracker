@@ -43,9 +43,19 @@ class LeadController extends Controller
                                 'closedleads'=>$closed] );
     }
     
-    public function displayLeadDetails(){
-        //retun view here
-        return view('showleaddetails');
+    public function updateLeadStatusFromDetails(Request $req , $taskId){
+        $user = Auth::id();
+        $lead = DB::table('jobs')
+                ->where('user_id', '=', $user)
+                ->where('id', '=', $taskId)
+                ->first();
+        if ($lead) {
+                    // Update the status of the lead
+                    DB::table('jobs')
+                        ->where('id',  $lead->id) // Assuming 'id' is the primary key column
+                        ->update(['status' =>$req->input('status')]);
+        } 
+        return redirect()->back();
     }
     
     public function updateLeadStatus(Request $req , $taskId){
