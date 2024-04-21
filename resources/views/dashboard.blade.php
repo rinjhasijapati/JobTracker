@@ -39,9 +39,9 @@
                            <form action="{{route('quicknewlead.add')}}" method="post" id="add-form" style="display: none;">
                              @csrf()
                               <div class="flex flex-col items-center">
-                                 <input name="companyname" value="{{ old('companyname') }}" type="text" placeholder="Add a company name..." id="company-name-input" class="rounded-md p-3 outline-none " />
+                                 <input name="companyname" value="{{ old('companyname') }}" type="text" placeholder="Add a company name..." id="company-name-input" class="rounded-md p-3 outline-none " required/>
                                  <x-input-error :messages="$errors->get('companyname')" class="mt-2" />
-                                  <input name="jobtitle" value="{{ old('jobtitle') }}" type="text" placeholder="Add a job" id="job-input"  class="rounded-md p-3 outline-none " />
+                                  <input name="jobtitle" value="{{ old('jobtitle') }}" type="text" placeholder="Add a job" id="job-input"  class="rounded-md p-3 outline-none" required/>
                                  @error('jobtitle')
                                        <script>
                                           window.onload = function() {
