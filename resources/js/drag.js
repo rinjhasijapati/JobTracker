@@ -2,15 +2,15 @@ const draggables = document.querySelectorAll(".task");
 const droppables = document.querySelectorAll(".swim-lane");
 // let id = "";
 
-document.getElementById("show-form-btn").addEventListener("click", function () {
-    document.getElementById("add-form").style.display = "inline-block";
-    document.getElementById("show-form-btn").style.display = "none";
-});
+// document.getElementById("show-form-btn").addEventListener("click", function () {
+//     document.getElementById("add-form").style.display = "inline-block";
+//     document.getElementById("show-form-btn").style.display = "none";
+// });
 
-document.getElementById("hide-form-button").addEventListener("click", () => {
-    document.getElementById("add-form").style.display = "none";
-    document.getElementById("show-form-btn").style.display = "block";
-});
+// document.getElementById("hide-form-button").addEventListener("click", () => {
+//     document.getElementById("add-form").style.display = "none";
+//     document.getElementById("show-form-btn").style.display = "block";
+// });
 let newStatus = "";
 draggables.forEach((task) => {
     task.addEventListener("dragstart", () => {

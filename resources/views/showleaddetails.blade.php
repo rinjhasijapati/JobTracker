@@ -1,4 +1,5 @@
 <x-app-layout class="flex justify-center items-center">
+    @vite(['resources/css/showleaddetails.css'])
     <x-slot name="header">
         <h2 class="font-semibold text-lg text-gray-800 leading-tight capitalize">
             details
@@ -88,7 +89,7 @@
         <div class="mt-8">
             <div>
                 <div class="flex justify-between">
-                    <div class="w-3/5">
+                    <div class="w-[55%]">
                         <div class="flex justify-between">
                             <h2 class="text-2xl  pb-5">Job Description</h2>
                     
@@ -105,13 +106,105 @@
                     </div>
 
             {{-- JOB DESCRIPTION ENDS HERE --}}
-
-                    <div class="w-4/12">
+                     {{-- w-4/12 --}}
+                    <div class="w-[40%]">
                         {{-- <div class="bg-white shadow-md rounded-md p-6  mt-80 mr-36"> --}}
                             <div class="pb-10">
-                            <h2 class="text-3xl  pb-2">Contacts</h2>
-                            <p class="text-gray-500  pb-2">You haven't added any contacts from this company</p>
-                            <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-3">Add a contact</button>
+                                <div class="flex justify-between">
+                                    <h2 class="text-3xl  pb-2">Contacts</h2>
+                                    {{-- <p class="text-gray-500  pb-2">You haven't added any contacts from this company</p> --}}
+                                    
+                                    <button id='show-form-btn' type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-3">Add a contact</button>
+                                </div>
+                           
+                            <form  class="bg-white p-5" style="display: none" id="add-form">
+                                <div class="flex space-x-3 mb-3">
+                                    <div class="input flex flex-col w-fit static">
+                                        <label
+                                          for="input"
+                                          class="text-blue-500 text-xs font-semibold relative top-2 ml-[7px] px-[3px] bg-white w-fit"
+                                          >Contact Name</label
+                                        >
+                                        <input
+                                          {{-- id="password" --}}
+                                          type="text"
+                                          placeholder="Name"
+                                          name="input"
+                                          class="border-blue-500 input px-[10px] py-[11px] text-xs bg-white border-2 rounded-[5px] w-[210px] focus:outline-none placeholder:text-black/25"
+                                        />
+                                      </div>
+    
+                                      <div class="input flex flex-col w-fit static">
+                                        <label
+                                          for="input"
+                                          class="text-blue-500 text-xs font-semibold relative top-2 ml-[7px] px-[3px] bg-white w-fit"
+                                          >Contact Email</label
+                                        >
+                                        <input
+                                          {{-- id="password" --}}
+                                          type="email"
+                                          placeholder="Name"
+                                          name="input"
+                                          class="border-blue-500 input px-[10px] py-[11px] text-xs bg-white border-2 rounded-[5px] w-[210px] focus:outline-none placeholder:text-black/25"
+                                        />
+                                      </div>
+                                </div>
+                         
+                                <div class="flex space-x-3">
+                                    <div class="input flex flex-col w-fit static">
+                                        <label
+                                          for="input"
+                                          class="text-blue-500 text-xs font-semibold relative top-2 ml-[7px] px-[3px] bg-white w-fit"
+                                          >Job Title</label
+                                        >
+                                        <input
+                                          {{-- id="password" --}}
+                                          type="text"
+                                          placeholder="Job Title"
+                                          name="Job Title"
+                                          class="border-blue-500 input px-[10px] py-[11px] text-xs bg-white border-2 rounded-[5px] w-[210px] focus:outline-none placeholder:text-black/25"
+                                        />
+                                      </div>
+    
+    
+    
+                                      <div class="input flex flex-col w-fit static">
+                                        <label
+                                          for="input"
+                                          class="text-blue-500 text-xs font-semibold relative top-2 ml-[7px] px-[3px] bg-white w-fit"
+                                          >LinkedIn URL</label
+                                        >
+                                        <input
+                                          {{-- id="password" --}}
+                                          type="url"
+                                          placeholder="LinkedIn URL"
+                                          name="LinkedIn URL"
+                                          class="border-blue-500 input px-[10px] py-[11px] text-xs bg-white border-2 rounded-[5px] w-[210px] focus:outline-none placeholder:text-black/25"
+                                        />
+                                      </div>
+                                </div>
+
+                                <div class="flex justify-end pt-4">
+                                    
+
+                                      <button id="hide-form-button" class="cancel-button mr-3" type="button">
+                                        Cancel
+                                      </button>
+
+
+
+                                      <button class="create-button">
+                                        <span>
+                                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg> Create
+                                        </span>
+                                      </button>
+                                </div>
+
+                               
+                                  
+                                  
+                                  
+                            </form>
                             </div>
                             <h2 class="text-3xl  pb-2">Documents</h2>
                             <p class="text-gray-500  pb-2">No documents assigned to this lead</p>
@@ -128,9 +221,22 @@
         </div>
      
     </div>
+
+
     <script>
         document.getElementById('states').addEventListener('change', function() {
             document.getElementById('statusForm').submit();
+        });
+
+        
+        document.getElementById("show-form-btn").addEventListener("click", function () {
+            document.getElementById("add-form").style.display = "inline-block";
+            document.getElementById("show-form-btn").style.display = "none";
+        });
+
+        document.getElementById("hide-form-button").addEventListener("click", () => {
+            document.getElementById("add-form").style.display = "none";
+            document.getElementById("show-form-btn").style.display = "block";
         });
     </script>
 </x-app-layout>
