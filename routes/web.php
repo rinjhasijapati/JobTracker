@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\OauthProviderController;
+use App\Http\Controllers\Leads\LeadCardController;
 use App\Http\Controllers\Leads\LeadController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -32,9 +33,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/dashboard',[LeadController::class,'index'])->name('dashboard');
 
 
-    Route::get('status/{type}', function ($type) {
-        return view('showstatus', ['status' => $type]);
-    })->name('status');
+    Route::get('status/{type}', [LeadCardController::class,'showStatusCard'])->name('status');
 
     Route::get('lead/create',function(){
         return view('createlead');
