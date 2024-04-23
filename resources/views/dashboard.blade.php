@@ -24,7 +24,7 @@
                      <div>
                         <div class="swim-lane" id="todo-lane">
 
-                           <h3 class="heading">lead</h3>
+                           <h3 class="heading">Leads</h3>
                            @foreach ($leads as $lead)
                            <a href="{{route('lead.showdetails',['id' => $lead->id])}}" data-id="{{$lead->id}}" class="task" draggable="true">
                               <div >
@@ -62,7 +62,7 @@
                 
 
                      <div class="swim-lane">
-                        <h3 class="heading">Application sent</h3>
+                        <h3 class="heading">Application Sent</h3>
 
                         @foreach ($applicationsSent as $applicationSent)
                         <a href="{{route('lead.showdetails',['id' => $applicationSent->id])}}" data-id="{{$applicationSent->id}}" class="task" draggable="true">
@@ -76,7 +76,7 @@
                      </div>
 
                      <div class="swim-lane">
-                        <h3 class="heading">Interview set</h3>
+                        <h3 class="heading">Interview Set</h3>
                         @foreach ($interviewsSet as $interviewSet)
                         <a href="{{route('lead.showdetails',['id' => $interviewSet->id])}}" data-id="{{$interviewSet->id}}" class="task" draggable="true">
                            <div >
