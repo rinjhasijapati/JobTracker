@@ -16,7 +16,14 @@ class LeadDetailsController extends Controller
         $lead =  DB::table('jobs')
         ->where('user_id', '=', $user)
         ->where('id' ,'=' ,$id)->first();
-        return view('showleaddetails',['lead'=>$lead]);
+
+        
+         $contact = DB::table('contacts')
+                ->where('job_id', '=', $id)->get();
+                
+                // dd($contact[1]);
+        return view('showleaddetails',['lead'=>$lead,
+                                        'contacts'=>$contact]);
     
     }
 

@@ -117,7 +117,14 @@
                                     <button id='show-form-btn' type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-3">Add a contact</button>
                                 </div>
                            
-                            <form  class="bg-white p-5" style="display: none" id="add-form">
+                            <form method="post" action="{{route('contact.add',['jobId'=>$lead->id])}}"  class="bg-white p-5 rounded-r-md shadow-md mb-6"    
+                                 @if ($errors->has('email'))
+                                style="display: block;"
+                                @else
+                                    style="display: none;"
+                                @endif 
+                                id="add-form">
+                                @csrf()
                                 <div class="flex space-x-3 mb-3">
                                     <div class="input flex flex-col w-fit static">
                                         <label
@@ -126,13 +133,17 @@
                                           >Contact Name</label
                                         >
                                         <input
-                                          {{-- id="password" --}}
+                                          id="contact_name"
                                           type="text"
                                           placeholder="Name"
-                                          name="input"
+                                          name="contact_name"
+                                          required
                                           class="border-blue-500 input px-[10px] py-[11px] text-xs bg-white border-2 rounded-[5px] w-[210px] focus:outline-none placeholder:text-black/25"
                                         />
+                                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+
                                       </div>
+
     
                                       <div class="input flex flex-col w-fit static">
                                         <label
@@ -141,13 +152,17 @@
                                           >Contact Email</label
                                         >
                                         <input
-                                          {{-- id="password" --}}
+                                            id="contact_email"
                                           type="email"
                                           placeholder="Name"
-                                          name="input"
+                                          name="contact_email"
+                                          required
                                           class="border-blue-500 input px-[10px] py-[11px] text-xs bg-white border-2 rounded-[5px] w-[210px] focus:outline-none placeholder:text-black/25"
                                         />
+                                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+
                                       </div>
+
                                 </div>
                          
                                 <div class="flex space-x-3">
@@ -158,10 +173,11 @@
                                           >Job Title</label
                                         >
                                         <input
-                                          {{-- id="password" --}}
+                                        id="job_title"
                                           type="text"
                                           placeholder="Job Title"
-                                          name="Job Title"
+                                          name="job_title"
+                                         
                                           class="border-blue-500 input px-[10px] py-[11px] text-xs bg-white border-2 rounded-[5px] w-[210px] focus:outline-none placeholder:text-black/25"
                                         />
                                       </div>
@@ -175,10 +191,12 @@
                                           >LinkedIn URL</label
                                         >
                                         <input
-                                          {{-- id="password" --}}
+                                        id="linkedin_url"
                                           type="url"
                                           placeholder="LinkedIn URL"
-                                          name="LinkedIn URL"
+                                      
+                                          name="linkedin_url"
+                                          required
                                           class="border-blue-500 input px-[10px] py-[11px] text-xs bg-white border-2 rounded-[5px] w-[210px] focus:outline-none placeholder:text-black/25"
                                         />
                                       </div>
@@ -193,18 +211,181 @@
 
 
 
-                                      <button class="create-button">
+                                      <button id="create-contact-button" class="create-button" type="submit">
                                         <span>
                                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg> Create
                                         </span>
                                       </button>
-                                </div>
 
-                               
-                                  
-                                  
+                                      {{-- <button id="save-contact-button" style="display: none" class="create-button" type="button">
+                                        <span>
+                                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg> Save
+                                        </span>
+                                      </button> --}}
+                                </div>  
                                   
                             </form>
+
+                            <form method="post" action="{{route('contact.edit',['jobId'=>$lead->id])}}"  class="bg-white p-5 rounded-r-md shadow-md mb-6"    
+                                @if ($errors->has('edit'))
+                               style="display: block;"
+                               @else
+                                   style="display: none;"
+                               @endif 
+                               id="edit-form">
+                               @csrf()
+                               <div class="flex space-x-3 mb-3">
+                                   <div class="input flex flex-col w-fit static">
+                                       <label
+                                         for="input"
+                                         class="text-blue-500 text-xs font-semibold relative top-2 ml-[7px] px-[3px] bg-white w-fit"
+                                         >Contact Name</label
+                                       >
+                                       <input
+                                         id="contact_name"
+                                         type="text"
+                                         placeholder="Name"
+                                         name="contact_name"
+                                         required
+                                         class="border-blue-500 input px-[10px] py-[11px] text-xs bg-white border-2 rounded-[5px] w-[210px] focus:outline-none placeholder:text-black/25"
+                                       />
+                                       <x-input-error :messages="$errors->get('edit')" class="mt-2" />
+
+                                     </div>
+
+   
+                                     <div class="input flex flex-col w-fit static">
+                                       <label
+                                         for="input"
+                                         class="text-blue-500 text-xs font-semibold relative top-2 ml-[7px] px-[3px] bg-white w-fit"
+                                         >Contact Email</label
+                                       >
+                                       <input
+                                           id="contact_email"
+                                         type="email"
+                                         placeholder="Name"
+                                         name="contact_email"
+                                         required
+                                         class="border-blue-500 input px-[10px] py-[11px] text-xs bg-white border-2 rounded-[5px] w-[210px] focus:outline-none placeholder:text-black/25"
+                                       />
+                                       <x-input-error :messages="$errors->get('edit')" class="mt-2" />
+
+                                     </div>
+
+                               </div>
+                        
+                               <div class="flex space-x-3">
+                                   <div class="input flex flex-col w-fit static">
+                                       <label
+                                         for="input"
+                                         class="text-blue-500 text-xs font-semibold relative top-2 ml-[7px] px-[3px] bg-white w-fit"
+                                         >Job Title</label
+                                       >
+                                       <input
+                                       id="job_title"
+                                         type="text"
+                                         placeholder="Job Title"
+                                         name="job_title"
+                                        
+                                         class="border-blue-500 input px-[10px] py-[11px] text-xs bg-white border-2 rounded-[5px] w-[210px] focus:outline-none placeholder:text-black/25"
+                                       />
+                                     </div>
+   
+   
+   
+                                     <div class="input flex flex-col w-fit static">
+                                       <label
+                                         for="input"
+                                         class="text-blue-500 text-xs font-semibold relative top-2 ml-[7px] px-[3px] bg-white w-fit"
+                                         >LinkedIn URL</label
+                                       >
+                                       <input
+                                       id="linkedin_url"
+                                         type="url"
+                                         placeholder="LinkedIn URL"
+                                     
+                                         name="linkedin_url"
+                                         required
+                                         class="border-blue-500 input px-[10px] py-[11px] text-xs bg-white border-2 rounded-[5px] w-[210px] focus:outline-none placeholder:text-black/25"
+                                       />
+                                     </div>
+                               </div>
+
+                               <div class="flex justify-end pt-4">
+                                   
+
+                                     <button id="hide-form-button" class="cancel-button mr-3" type="button">
+                                       Cancel
+                                     </button>
+
+
+
+                                     <button id="create-contact-button" class="create-button" type="submit">
+                                       <span>
+                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg> Update
+                                       </span>
+                                     </button>
+
+                                     {{-- <button id="save-contact-button" style="display: none" class="create-button" type="button">
+                                       <span>
+                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg> Save
+                                       </span>
+                                     </button> --}}
+                               </div>  
+                                 
+                           </form>
+                            
+
+                            <div>
+                               
+                                @foreach ($contacts as $contact)
+                                
+                                <div id="contact-container" class="bg-white flex p-3 mt-4">
+                                    <div class="bg-[#e5e7eb] flex items-center text-2xl p-4 rounded-full mr-3"><i class="fa-solid fa-user"></i></div>
+                                    <div class="flex justify-between w-full">
+                                        <div class="w-11/12">
+                                            <div class="flex justify-between">
+                                                <span id="name" >{{$contact->contact_name}}</span>
+                                                <span id="job_title">CEO</span>
+                                            </div>
+                                            <div  class="flex justify-between" >
+                                                <span id="contact_email" class="mr-4">{{$contact->contact_email}}</span>
+                                                <a id="linkedin_url" class="text-orange-500" href="{{$contact->linkedin_url}}">LinkedIn profile</a>
+                                             
+                                            </div>
+                                        </div>
+                                        
+                                        <x-dropdown align="right" width="48" contentClasses="py-1 bg-white">
+                                            <!-- Trigger -->
+                                            <x-slot name="trigger">
+                                                <div class="cursor-pointer">
+                                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                </div>
+                                            </x-slot>
+                                        
+                                            <!-- Dropdown Content -->
+                                            <x-slot name="content">
+                                                <ul class="py-2 px-3">
+                                                    <li>
+                                                        <div id="edit-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Edit</div>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Delete</a>
+                                                    </li>
+                                                </ul>
+                                            </x-slot>
+                                            
+                                        </x-dropdown>
+                                    </div>
+                
+                                </div>
+                                @endforeach
+                               
+
+
+                            
+                            </div>
+                          
                             </div>
                             <h2 class="text-3xl  pb-2">Documents</h2>
                             <p class="text-gray-500  pb-2">No documents assigned to this lead</p>
@@ -231,12 +412,107 @@
         
         document.getElementById("show-form-btn").addEventListener("click", function () {
             document.getElementById("add-form").style.display = "inline-block";
+            document.getElementById("edit-form").style.display = "none";
             document.getElementById("show-form-btn").style.display = "none";
         });
 
-        document.getElementById("hide-form-button").addEventListener("click", () => {
-            document.getElementById("add-form").style.display = "none";
+        document.querySelectorAll('#hide-form-button').forEach(btn => {
+            btn.addEventListener('click', function() {
+            let form = document.getElementById("add-form");
+            document.getElementById("edit-form").style.display = "none";
+            form.style.display = "none";
+            form.querySelector('#contact_name').value="";
+            form.querySelector('#contact_email').value="";
+            form.querySelector('#job_title').value="";
+            form.querySelector('#linkedin_url').value="";
+
+            // document.getElementById("create-contact-button").style.display = 'inline-block';
+            // document.getElementById("save-contact-button").style.display = 'none';
+
             document.getElementById("show-form-btn").style.display = "block";
+            });
         });
+        // document.getElementById("hide-form-button").addEventListener("click", () => {
+        //     // document.getElementById("add-form").style.display = "none";
+        //     // document.getElementById("show-form-btn").style.display = "block";
+
+        //     let form = document.getElementById("add-form");
+        //     document.getElementById("edit-form").style.display = "none";
+        //     form.style.display = "none";
+        //     form.querySelector('#contact_name').value="";
+        //     form.querySelector('#contact_email').value="";
+        //     form.querySelector('#job_title').value="";
+        //     form.querySelector('#linkedin_url').value="";
+
+        //     // document.getElementById("create-contact-button").style.display = 'inline-block';
+        //     // document.getElementById("save-contact-button").style.display = 'none';
+
+        //     document.getElementById("show-form-btn").style.display = "block";
+        // });
+
+        //get contact
+        document.querySelectorAll('#edit-btn').forEach(btn => {
+         btn.addEventListener('click', function() {
+            document.getElementById("add-form").style.display = "none";
+            // document.getElementById("create-contact-button").style.display = 'none';
+            // document.getElementById("save-contact-button").style.display = 'inline-block';
+
+        // Get the parent container of the clicked button
+        const contactContainer = this.closest('#contact-container');
+
+        // Extract data from the contact container
+        const name = contactContainer.querySelector('#name').textContent;
+        const jobTitle = contactContainer.querySelector('#job_title').textContent;
+        const email = contactContainer.querySelector('#contact_email').textContent;
+        const linkedinUrl = contactContainer.querySelector('#linkedin_url').href;
+
+     
+        let form = document.getElementById("edit-form");
+        form.style.display = "inline-block";
+        form.querySelector('#contact_name').value=name;
+        form.querySelector('#contact_email').value=email;
+        form.querySelector('#job_title').value=jobTitle;
+        form.querySelector('#linkedin_url').value=linkedinUrl;
+
+    });
+});
+
+
+//     document.getElementById('save-contact-button').addEventListener('click', function() {
+//         // Assuming you have a route named 'contact.edit' for editing the form
+//         // Replace 'jobId' with the appropriate parameter name for the job ID
+//         var jobId = "{{ $lead->id }}"; // Get the job ID from the PHP variable
+//         var editRoute = "{{ route('contact.edit', ['jobId' => 'jobIdPlaceholder']) }}";
+//         editRoute = editRoute.replace('jobIdPlaceholder', jobId);
+
+//         // Create a hidden form element to submit the form data with a POST request
+//         var form = document.getElementById('add-form');
+//         var hiddenForm = form.cloneNode(true);
+
+//         hiddenForm.method = 'post';
+//         hiddenForm.action = editRoute;
+//         hiddenForm.style.display = 'none';
+      
+//         document.body.appendChild(hiddenForm);
+//         console.log(hiddenForm);
+
+       
+
+// // Extract data from the contact container
+//     const name = hiddenForm.querySelector('#contact_name').textContent;
+//     const jobTitle = hiddenForm.querySelector('#job_title').textContent;
+//     const email = hiddenForm.querySelector('#contact_email').textContent;
+//     const linkedinUrl = hiddenForm.querySelector('#linkedin_url').href;
+
+//     console.log(name,jobTitle,email,linkedinUrl);
+//         // Submit the hidden form
+//         // hiddenForm.submit();
+
+//         // Remove the hidden form after submission
+//         // hiddenForm.remove();
+//     });
+
+
+
     </script>
 </x-app-layout>
