@@ -6,8 +6,8 @@
     </x-slot>
     <div  class="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
         <div >
-            <h2 class="text-3xl  ">{{$lead->company_name}}</h2>
-            <h1 class="text-5xl font-extrabold mt-2">{{$lead->job_title}}</h1>
+            <h2 class="text-3xl text-blue-400">{{$lead->company_name}}</h2>
+            <h1 class="text-5xl font-extrabold mt-2 text-blue-500">{{$lead->job_title}}</h1>
             <div class="flex justify-between">
                 <div class="flex flex-wrap items-center mt-4">
                     <p class="text-gray-500">
@@ -79,7 +79,7 @@
 
         <div class="mt-8">
             <div>
-                <h2 class="text-2xl  pb-2">Company Summary</h2>
+                <h2 class="text-2xl  pb-2 text-blue-500">Company Summary</h2>
                 <p class="text-gray-500 ">{{$lead->company_summary}}</p>
             </div>
         </div>
@@ -90,7 +90,7 @@
                 <div class="flex justify-between">
                     <div class="w-3/5">
                         <div class="flex justify-between">
-                            <h2 class="text-2xl  pb-5">Job Description</h2>
+                            <h2 class="text-2xl  pb-5 text-blue-500">Job Description</h2>
                     
                             <a href="{{$lead->listing_url}} " class="text-orange-500">View Listing <i class="ml-2 fa-solid fa-arrow-up-right-from-square"></i> </a>
                         </div>
