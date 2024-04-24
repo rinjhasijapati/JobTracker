@@ -17,9 +17,26 @@ class LeadCardController extends Controller
         ->where('user_id', '=', $user)
         ->where('status' ,'=' ,$type)->get();
 
+        $count = [];
+
+        if ($lead) {
+            foreach ($lead as $leadId) {
+                $contactCount = DB::table('contacts')
+                    ->where('user_id', '=', $user)
+                    ->where('job_id', '=', $leadId->id)
+                    ->count();
+        
+                $count[] = $contactCount;
+            }
+        } else {
+            // If $lead is empty, you might want to set a default value for $count
+             $count = [];
+        }
+     
 
         return view('showstatus', ['status' => $type,
-                                    'leads' => $lead]);
+                                    'leads' => $lead,
+                                     'count' => $count]);
        
 
     }

@@ -7,7 +7,9 @@
     </x-slot>
    
     <div class="max-w-6xl m-auto mt-7 flex justify-between flex-wrap">
-
+        @php
+            $index = 0;
+        @endphp
         @foreach ($leads as $lead)
             {{-- <h1>{{$lead->job_title}}</h1> --}}
             <div class="w-[48%] mb-10">
@@ -39,8 +41,8 @@
            
     
                 <div class="flex justify-between bg-[#f7fafc] p-5">
-                    <div>1 Contact</div>
-                    <div>0 documents</div>
+                    <div>{{$count[$index]}} Contact</div>
+                    {{-- <div>0 documents</div> --}}
                     <a href="{{route('lead.showdetails',['id' => $lead->id])}}">
                         <button class="cursor-pointer relative group overflow-hidden border-2 px-8 py-1 border-green-500">
                             <span class="font-bold text-white text-base relative z-10 group-hover:text-green-500 duration-500">View</span>
@@ -56,7 +58,9 @@
                     
                 </div>
             </div>
-            
+            @php
+            $index++;
+            @endphp
         @endforeach
 
         {{-- <h1>this is {{$status}}</h1> --}}
