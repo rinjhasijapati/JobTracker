@@ -5,14 +5,7 @@
             {{ __('Dashboard') }}
          </h2>
        
-         <a href="{{route('displaycreatenewleadform')}}">
-            <button class="cursor-pointer font-semibold overflow-hidden relative z-100 border border-green-500 group px-4 py-1 rounded-md">
-               <span class="relative z-10 text-green-500 group-hover:text-white text-base duration-500">Create a new Lead</span>
-               <span class="absolute w-full h-full bg-green-500 -left-24 top-0 -rotate-45 group-hover:rotate-0 group-hover:left-0 duration-500"></span>
-               <span class="absolute w-full h-full bg-green-500 -right-24 top-0 -rotate-45 group-hover:rotate-0 group-hover:right-0 duration-500"></span>
-             </button>
-         </a>
-       
+     
       </div>
   
    </x-slot>
@@ -24,7 +17,7 @@
                      <div>
                         <div class="swim-lane" id="todo-lane">
 
-                           <h3 class="heading">lead</h3>
+                           <h3 class="heading">Leads</h3>
                            @foreach ($leads as $lead)
                            <a href="{{route('lead.showdetails',['id' => $lead->id])}}" data-id="{{$lead->id}}" class="task" draggable="true">
                               <div >
@@ -34,8 +27,17 @@
                            </a>
                         @endforeach
                         </div>
-                        <div id="todo-form" class="flex justify-center bg-green-300 mt-4 rounded-md shadow-2xl" >
-                           <button id="show-form-btn">Quick Add</button>
+                        <div id="todo-form" class="flex justify-center mt-4" >
+                           <a href="{{route('displaycreatenewleadform')}}">
+                              <button class="cursor-pointer font-semibold overflow-hidden relative z-100 border border-green-500 group px-8 py-1 rounded-md">
+                                 <span class="relative z-10 text-green-500 group-hover:text-white text-xl duration-500">Create a new Lead</span>
+                                 <span class="absolute w-full h-full bg-green-500 -left-34 top-0 -rotate-45 group-hover:rotate-0 group-hover:left-0 duration-500"></span>
+                                 <span class="absolute w-full h-full bg-green-500 -right-34 top-0 -rotate-45 group-hover:rotate-0 group-hover:right-0 duration-500"></span>
+                               </button>
+                           </a>
+                         
+                          
+                           {{-- <button id="show-form-btn">Quick Add</button>
                            <form action="{{route('quicknewlead.add')}}" method="post" id="add-form" style="display: none;">
                              @csrf()
                               <div class="flex flex-col items-center">
@@ -56,13 +58,13 @@
                                </div>
 
                               </div>
-                           </form>
+                           </form> --}}
                        </div>
                      </div>
                 
 
                      <div class="swim-lane">
-                        <h3 class="heading">Application sent</h3>
+                        <h3 class="heading">Application Sent</h3>
 
                         @foreach ($applicationsSent as $applicationSent)
                         <a href="{{route('lead.showdetails',['id' => $applicationSent->id])}}" data-id="{{$applicationSent->id}}" class="task" draggable="true">
@@ -76,7 +78,7 @@
                      </div>
 
                      <div class="swim-lane">
-                        <h3 class="heading">Interview set</h3>
+                        <h3 class="heading">Interview Set</h3>
                         @foreach ($interviewsSet as $interviewSet)
                         <a href="{{route('lead.showdetails',['id' => $interviewSet->id])}}" data-id="{{$interviewSet->id}}" class="task" draggable="true">
                            <div >

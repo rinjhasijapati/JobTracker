@@ -15,16 +15,16 @@ class LeadController extends Controller
         $user = Auth::id();
         $lead =  DB::table('jobs')
         ->where('user_id', '=', $user)
-        ->where('status' ,'=' ,'lead')->get();
+        ->where('status' ,'=' ,'Leads')->get();
 
         $applicationSent =  DB::table('jobs')
         ->where('user_id', '=', $user)
-        ->where('status' ,'=' ,'Application sent')->get();
+        ->where('status' ,'=' ,'Application Sent')->get();
 
 
         $interviewSet =  DB::table('jobs')
         ->where('user_id', '=', $user)
-        ->where('status' ,'=' ,'Interview set')->get();
+        ->where('status' ,'=' ,'Interview Set')->get();
 
 
         $offerReceived =  DB::table('jobs')
@@ -132,7 +132,7 @@ class LeadController extends Controller
             $lead->company_name= $companyName;
             $lead->company_website= $companywebsite;
             $lead->company_summary= $companysummary;
-            $lead->status = "lead";
+            $lead->status = "Leads";
             $lead->save();
 
             return redirect(route('dashboard'));
