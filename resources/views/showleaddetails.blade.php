@@ -370,7 +370,7 @@
                                                         <div id="edit-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Edit</div>
                                                     </li>
                                                     <li>
-                                                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Delete</a>
+                                                        <a href="{{route('contact.delete',['id'=>$contact->id])}}" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Delete</a>
                                                     </li>
                                                 </ul>
                                             </x-slot>

@@ -9,4 +9,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::post('/addcontact/{jobId}',[ContactController::class,'addContact'])->name('contact.add');
     Route::post('/contactedit/{jobId}',[ContactController::class,'editContact'])->name('contact.edit');
 
+    Route::get('/contactdelete/{id}',[ContactController::class,'deleteContact'])->name('contact.delete');
+
+
 });

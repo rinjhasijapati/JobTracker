@@ -86,4 +86,22 @@ class ContactController extends Controller
         
         }
     }
+
+    public function deleteContact($id){
+        
+        $user = Auth::id();
+
+        $findContact = DB::table('contacts')
+        ->where('user_id', '=', $user)
+        ->where('id', '=', $id)
+        ->first();
+
+        if($findContact){
+            $data = Contacts::find($id);
+            $data->delete();
+
+        }
+      
+        return redirect()->back();
+    }
 }
