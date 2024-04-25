@@ -38,7 +38,6 @@ class LeadDetailsController extends Controller
 
     public function updateLeadDetails(Request $req , $id){
         $user = Auth::id();
-        $data = Jobs::find($id);
 
         $findListingUrl = DB::table('jobs')
                 ->where('user_id', '=', $user)
@@ -49,28 +48,32 @@ class LeadDetailsController extends Controller
                 ->first();
 
         if($findListingUrl){
-            return redirect()->route('lead.showeditdetailsform',['id'=>$id])->withInput()->withErrors(['listingurl' => 'The listing URL already exists.']);
+               $data = Jobs::find($id);
+
+               // $data->user_id = $user;
+               $data->job_title= $req->jobtitle;
+               $data->listing_url=$req-> listingurl;
+               $data->job_location= $req->joblocation;
+               $data->compensation= $req->compensation;
+               $data->contract_type= $req->contracttype;
+               $data->job_description= $req->jobdescription;
+   
+               $data->company_name= $req->companyname;
+               $data->company_website= $req->companywebsite;
+               $data->company_summary= $req->companysummary;
+   
+   
+           
+               $data->update();
+   
+               // $lead =  DB::table('jobs')
+               // ->where('user_id', '=', $user)
+               // ->where('id' ,'=' ,$id)->first();
+               return redirect(route('lead.showdetails',['id'=>$id]));
+            // return redirect()->route('lead.showeditdetailsform',['id'=>$id])->withInput()->withErrors(['listingurl' => 'The listing URL already exists.']);
         }else{
-              // $data->user_id = $user;
-            $data->job_title= $req->jobtitle;
-            $data->listing_url=$req-> listingurl;
-            $data->job_location= $req->joblocation;
-            $data->compensation= $req->compensation;
-            $data->contract_type= $req->contracttype;
-            $data->job_description= $req->jobdescription;
-
-            $data->company_name= $req->companyname;
-            $data->company_website= $req->companywebsite;
-            $data->company_summary= $req->companysummary;
-
-
-        
-            $data->update();
-
-            // $lead =  DB::table('jobs')
-            // ->where('user_id', '=', $user)
-            // ->where('id' ,'=' ,$id)->first();
             return redirect(route('lead.showdetails',['id'=>$id]));
+           
         }
 
        
