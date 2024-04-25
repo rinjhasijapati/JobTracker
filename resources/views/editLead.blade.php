@@ -16,12 +16,12 @@
                 <div class="flex mb-5">
                     <div class="w-1/2 pr-4">
                         <label class="text-gray-600">Company Name</label>
-                        <input  value="{{$lead->company_name}}" name='companyname' type="text" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" Company Name (required)" required />
+                        <input  value="{{$lead->company_name}}" name="companyname" type="text" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" Company Name (required)" required />
 
                     </div>
                     <div class="w-1/2 pl-4">
                         <label class="text-gray-600">Company Website</label>
-                        <input value="{{$lead->company_website}}" name='companywebsite' type="url" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" https://" required />
+                        <input value="{{$lead->company_website}}" name="companywebsite" type="url" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" https://" required />
                     </div>
                 </div>
                 <div class="relative z-0 w-full mb-5 group">

@@ -41,10 +41,12 @@ class LeadDetailsController extends Controller
 
         $findListingUrl = DB::table('jobs')
                 ->where('user_id', '=', $user)
-                ->where('company_name', '=', $req-> companyname)
-                ->where('job_title', '=', $req-> jobtitle)
+                ->where('id', '=', $id)
 
-                ->where('listing_url', '=', $req-> listingurl)
+                // ->where('company_name', '=', $req-> companyname)
+                // ->where('job_title', '=', $req-> jobtitle)
+
+                // ->where('listing_url', '=', $req-> listingurl)
                 ->first();
 
         if($findListingUrl){
@@ -59,6 +61,7 @@ class LeadDetailsController extends Controller
                $data->job_description= $req->jobdescription;
    
                $data->company_name= $req->companyname;
+            //    dd($req->companyname);
                $data->company_website= $req->companywebsite;
                $data->company_summary= $req->companysummary;
    

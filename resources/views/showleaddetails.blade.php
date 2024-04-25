@@ -201,7 +201,7 @@
                                           type="email"
                                           placeholder="Name"
                                           name="contact_email"
-                                          required
+                                          {{-- required --}}
                                           class="border-blue-500 input px-[10px] py-[11px] text-xs bg-white border-2 rounded-[5px] w-[210px] focus:outline-none placeholder:text-black/25"
                                         />
                                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -310,7 +310,7 @@
                                          type="email"
                                          placeholder="Name"
                                          name="contact_email"
-                                         required
+                                         {{-- required --}}
                                          class="border-blue-500 input px-[10px] py-[11px] text-xs bg-white border-2 rounded-[5px] w-[210px] focus:outline-none placeholder:text-black/25"
                                        />
                                        <x-input-error :messages="$errors->get('edit')" class="mt-2" />

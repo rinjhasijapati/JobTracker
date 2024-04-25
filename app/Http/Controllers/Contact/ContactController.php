@@ -32,7 +32,7 @@ class ContactController extends Controller
                 // ->where('contact_email', '=', $contact_email)
                 ->first();
            
-        if($findemail || $findlinkedurl){
+        if($findlinkedurl){
             return redirect()->back()->withInput()->withErrors(['email' => 'The contact already exist']);
         }else{
             $person = new Contacts();
@@ -64,7 +64,7 @@ class ContactController extends Controller
         $findContact = DB::table('contacts')
         ->where('user_id', '=', $user)
         ->where('job_id', '=', $jobId)
-        ->where('contact_email', '=', $contact_email)
+        ->where('linkedin_url', '=', $linkedin_url)
         ->first();
         // dd($findContact->id);
         if($findContact){

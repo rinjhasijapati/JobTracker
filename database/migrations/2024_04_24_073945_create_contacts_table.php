@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
 
             $table->string('contact_name');
-            $table->string('contact_email');
+            $table->string('contact_email')->nullable();
             $table->string('job_title')->nullable();
             $table->string('linkedin_url');
             $table->timestamps();
