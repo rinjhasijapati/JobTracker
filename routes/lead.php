@@ -23,6 +23,8 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::post('/update-task-status/{taskId}', [LeadController::class,'updateLeadStatusFromDetails'])->name('lead.updateStatusFormDetails');
     
 
+    Route::get('/leaddelete/{id}',[LeadController::class,'deleteLead'])->name('lead.delete');
+
 });
 
 

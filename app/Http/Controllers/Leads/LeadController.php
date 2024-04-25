@@ -141,4 +141,21 @@ class LeadController extends Controller
         }
        
     }
+
+    public function deleteLead($id){
+        $user = Auth::id();
+
+        $findlead = DB::table('jobs')
+        ->where('user_id', '=', $user)
+        ->where('id', '=', $id)
+        ->first();
+
+        if($findlead){
+            $data = Jobs::find($id);
+            $data->delete();
+
+        }
+      
+        return redirect(route('dashboard'));
+    }
 }
