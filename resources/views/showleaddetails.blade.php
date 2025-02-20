@@ -432,11 +432,11 @@
                             </div>
                           
                             </div>
-                            <h2 class="text-3xl  pb-2">Documents</h2>
+                            {{-- <h2 class="text-3xl  pb-2">Documents</h2>
                             <p class="text-gray-500  pb-2">No documents assigned to this lead</p>
                             <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 flex items-center focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">
                                 <i class="fa fa-file mr-2" aria-hidden="true"></i> Add a document
-                             </button>
+                             </button> --}}
                         {{-- </div> --}}
                     </div>
                    
